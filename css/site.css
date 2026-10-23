@@ -334,3 +334,4 @@ p { margin: 0 0 1em; max-width: 62ch; text-wrap: pretty; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); }
 .js .reveal.is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; } }
+#bohri .bento + .hero__cta { margin-top: 28px; }
