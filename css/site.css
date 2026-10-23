@@ -20,7 +20,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+html { scroll-behavior: smooth; scroll-padding-top: 140px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 body {
   margin: 0;
@@ -184,6 +184,22 @@ p { margin: 0 0 1em; max-width: 62ch; text-wrap: pretty; }
 .strip img { border-radius: var(--radius); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
 .strip img:nth-child(2) { aspect-ratio: auto; height: 100%; }
 
+/* sticky category bar: sits under the header while the menu is on screen */
+.chips {
+  position: sticky; top: 68px; z-index: 15;
+  background: rgba(27, 29, 21, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-block: 1px solid var(--line); margin-bottom: clamp(28px, 4vw, 48px);
+}
+.chips__row { display: flex; gap: 8px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+.chips__row::-webkit-scrollbar { display: none; }
+.chips a {
+  flex: none; display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px;
+  text-decoration: none; font-weight: 500; font-size: .95rem; color: var(--muted);
+  border: 1px solid var(--line); transition: color .25s, background-color .25s, border-color .25s;
+}
+.chips a:hover { color: var(--text); border-color: #4a4f3b; }
+.chips a.is-active { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+
 /* ---------- Shawarma Ustad ---------- */
 .section--ustad {
   background:
@@ -313,3 +329,8 @@ p { margin: 0 0 1em; max-width: 62ch; text-wrap: pretty; }
   .order-bar a:active { transform: scale(.97); }
   .order-bar .is-primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
 }
+
+/* ---------- Fade-up on scroll (only when JS adds .js) ---------- */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); }
+.js .reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; } }
